@@ -7,24 +7,20 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
-\newcommand{\ul}{\underline}
+\newcommand{\textul}{\underline}
 
 \begin{document}
 \section*{Goals}
-improve SDSS calibration\\
-\ul{mechanical instability}\\
-seek to constrain instabilities in SDSS calibration especially to improve removal of pesky sky lines coinciding with science\\
-current method normalizes each observation to sky/dome conditions of previous (accounting for short term instability)\\
-current method ignores conditions at previous observations (failing to account for long term instability)\\
-instability may be caused by some small number of mechanical factors that could be identified\\
-develop model and use, say PCA, to remove effects\\
-\ul{sky subtraction}\\
-science data calibrated from flats (dome shots) and sky for that shot\\
-idea: after using sky and flat to calibrate science, use science to validate weather\\
-how? establish slit position/wavelength dependence on focal plane from science data\\
-by co-adding lots of data, science cancels out, left with sky map to be used for better sky subtraction\\
-would probably need to account for mechanical instability first\\
-also want to know how big a difference both of these make
+I need to first understand sky subtraction and flat-fielding in spectroscopy in general.  I also need to gain a better understanding of how SDSS plates work, as opposed to IFU spectroscopy.  Then I might be ready to try improving SDSS calibration methods.\\
+\indent Sky lines are the bane of NIR observations, and removing them without degrading low-S/N data can be tricky.  In general, science data are calibrated against shots of the dome (which may reflect some of the light we aim to collect) and the sky (which will incorporate sky lines and weather).  The current method SDSS uses to calibrate observations normalizes each science observation to the sky/dome conditions immediately before and after that observation.  This assumes that there is no short-term instability and that long-term sky/dome conditions accessible through previous sky/dome observations contain no useful information.\\
+\indent Instabilities that could affect the calibration include defects in the fibers across the focal plane, asymmetries of the dome, weather, and mechanical aspects of the plates.  If these factors could be modeled (like a physically motivated version of PCA), the effects could be removed better than just by effectively smoothing out the residuals of an improper sky subtraction technique.  It is unclear how big a difference this would make, but it probably has to be done before any other improvements could be made.\\
+\indent Another way to account for short-term variability is to take advantage of the actual science data in calibration (which would be something like self-calibration or auto-calibration, I guess).  Once corrected using PCA, the science images may be combined to generate a slit position-wavelength relation on the focal plane that could further validate understanding of the sources of instability, such as weather.  This would be valuable for eliminating the inefficiency of taking sky spectra separately as well as the inaccuracy caused by using a small number of sky fibers to calibrate a large number of science fibers when conditions may vary considerably over the focal plane.
+\section*{Progress}
+\subsection*{Week 1}
+I tried reading arXiv:astro-ph/0501460 first and got lost towards the end.  Reading github.com/davidwhogg/Spectroscopy/documents/spectroscopy.tex helped substantially.  I reviewed some of my notes from the Dunlap Institute Summer School in Astronomical Instrumentation and the remainder of my confusion was resolved!
+\subsection*{Week 2}
+
+
 \end{document}
 
 \section*{}
