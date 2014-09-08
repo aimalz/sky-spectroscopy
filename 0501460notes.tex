@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+% \usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\newcommand{\textul}{\underline}
+
+\begin{document}
+\section*{Wild \& Hewett (2005) arXiv:astro-ph/0501460}
+Overall, sky lines are a problem for ground-based NIR observations such as SDSS.  They currently use PCA to remove sky lines and claim it's good.  How do they check?  Oh dear, their pipeline is written in IDL.\\
+% \subsection*{Introduction}
+They noted sharp residuals as a sign of flat-fielding gone wrong.  It makes sense to take positive-negative pattern as sign of failed subtraction and correct for that.  I'm not sure how PCA will help. . . autocorrelation with an offset brings to mind Fourier tools like a periodogram to identify points that are screwed up in the same way.\\
+It looks like the goal is to remove residuals, not to subtract the sky correctly in the first place.  My impression is that they correct the calibrated data rather than developing a different calibration method. \\
+% \subsection*{Method}
+Why couldn't they access the raw CCD exposures? Can \textit{we} access that? This approach seems more indirect than it has to be.\\
+Won't PCA of the average sky subtracted sky spectra quantify the weather more than anything else? What else would affect sky spectra across focal plane relative to average? (Also, is the average ever a good metric?)  Aren't the patterns they're talking about not necessarily imperfections in sky subtraction?\\
+I can't tell if they made position on the focal plane one of their PCA axes.  It seems like that would make a difference.\\
+% \subsubsection*{A sample of sky spectra}
+Why must the sky spectra have small spectral colors?  Also, how do the results not depend on the subset of sky spectra used to establish PCA components?\\
+% \textul{Poisson error normalization}\\
+I would guess that the Poisson noise normalization varies for each fiber in a known or knowable way.  Indeed, they indicate inclusion of the effect over each pixel in the spectrum, so presumably also the position on the sky.\\
+How do we know the Poisson noise subtraction doesn't erase low-signal features?\\
+The rescaling of the noise as the continuum rises with wavelength makes sense in that it seems like it's what everyone else does.  Is this the rescaling of noise overall or just continuum?\\
+Re: Fig. 4, I'm impressed with how well the PCA-based sky subtraction preserves the probably real features of the spectrum.  The noise removal seems to get rid of everything so I'm not sure what they'e showing here.  For low-signal data, I can see how this would render the observations useless.\\
+% \textul{Identification of sky pixels}\\
+The way they identify sky pixels seems likely to also pick out emission lines if we were to apply it to science spectra.  Also, can it really be true that half the pixels in the spectrum hit sky lines?  That's atrocious!\\
+% \subsubsection*{PCA}
+Finally, something I understand without having to re-read it ten times!  Their exclusion of spectra with component amplitudes quite far from the mean is not unreasonable.\\
+% \textul{The number of components}\\
+Re: Fig 8, this is exactly what I would have expected to see, which is reassuring.  Of course we expect fewer components to be necessary for the mess of noise-dominated sky lines than for high-signal astronomical objects.  The number of components being considered, however, seems enormous given that much of the problem is caused by probably a handful of physical sources.  Also, rather than seeing the distribution of the number of necessary components, I'd rather see the distribution of how much of the variance the $n$th component explains.  Actually, now that I think about it more, I'm not at all sure about my interpretation of this diagram in terms of why certain objects might have more complicated spectra from the perspective of PCA.\\
+% \subsubsection*{Reconstructing sky residuals in an object spectrum}
+I don't have a good idea of pixel scale here to know whether the filter is reasonable.\\
+Why are they letting PCA weight all bins equally?  Shouldn't it downweight higher wavelengths where the noise was higher anyway?\\
+Regarding masking known features in noisy parts of the spectrum that are likely to be destroyed by PCA sky subtraction, ouch.  If I understand it correctly, this is no good for objects that aren't already well-constrained or if they have a low S/N.\\
+By the time I got this far, I realized I'd forgotten how the noise spectrum is derived.  Yes, it makes sense to handle a counting statistics error the way they did it here.\\
+% \subsection*{Application of method to SDSS spectra}
+I'm a bit critical of any non-probabilistic classification scheme including the one used by SDSS.  Everything else is straightforward.\\
+% \subsubsection*{Galaxies}
+% \subsubsection*{Quasars}
+% \subsubsection*{Stars}
+% \subsection*{Tests of method on SDSS science objects}
+% \subsubsection*{Galaxy absorption features: the Ca II triplet}
+Okay, I'm convinced this is a good choice of subject on which to test the method.\\
+% \textul{EW line ratios}\\
+I get how they're using the feature mask width to test their method.  I'm not too clear on how they come up with the feature mask because spectroscopy isn't exactly second nature yet.  Should I trust this?\\
+Re: Fig. 12, I'm a bit skeptical of how features in spSpec-52368-0580-469 could be identified with much confidence.\\
+% \textul{Improvement in feature detection quality}\\
+Re: Fig 13, I've convinced myself it's reasonable for sky residual subtraction to improve the $\chi^{2}$ values across all wavelengths and am not sure why they showed all wavelengths.  Oh, I see, there are two portions of wavelength where sky lines are significant vs. where they are not.\\
+% \subsubsection*{Absorption features in damped Lyman-$\alpha$ systems}
+Re: Fig. 14, how big a difference does this really make?  Also, is the arithmetic mean even the right statistic to use here?  I don't know enough about DLA systems to judge whether this was reasonable.\\
+Re: Fig. 15, I can't see the difference between the masked and unmasked versions.  If anything, the masked version has more of the spikiness they took as a marker of poor subtraction.\\
+% \subsubsection*{Composite quasar spectra}
+Fig. 16 is more compelling than the previous examples.  Not knowing more about the noiseless spectra, I'm unsure how to think about doing better than this.\\
+% \subsection*{Summary}
+I'm still pretty unclear on the effect of masking here aside from the statistical sense.  I also have a poor grasp of what these spectra ought to look like in the absence of any noise as well as with just Poisson noise, making the comparisons less intuitive.  I don't like that different types of objects need different sky-subtraction schemes because it assumes there's already a very good classification algorithm, and in general I think those that are not inherently probabilistic do a disservice to low S/N data, and aren't those the ones where this entire approach most matters?
+
+\end{document}
+
+\section*{}
+\subsection*{}
+\subsubsection*{}
+
+\begin{tabular}{c}
+\end{tabular}
+
+\begin{align*}
+\end{align*}
+
+\includegraphics[width=8cm,height=6cm]{121214fig.eps}
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+\begin{eqnarray*}
+
+\left\{\begin{array}{c}\end{array}\right\}
+
+\begin{itemize}
+\item 
+\end{itemize}
