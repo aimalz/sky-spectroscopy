@@ -17,9 +17,9 @@ I need to first understand sky subtraction and flat-fielding in spectroscopy in 
 \indent Another way to account for short-term variability is to take advantage of the actual science data in calibration (which would be something like self-calibration or auto-calibration, I guess).  Once corrected using PCA, the science images may be combined to generate a slit position-wavelength relation on the focal plane that could further validate understanding of the sources of instability, such as weather.  This would be valuable for eliminating the inefficiency of taking sky spectra separately as well as the inaccuracy caused by using a small number of sky fibers to calibrate a large number of science fibers when conditions may vary considerably over the focal plane.
 \section*{Progress}
 \subsection*{Week 1}
-I tried reading arXiv:astro-ph/0501460 first and got lost towards the end.  Reading github.com/davidwhogg/Spectroscopy/documents/spectroscopy.tex helped substantially with putting it into the context of a consistent mathematical model (rather than the somewhat inconsistent one I was putting together ad hoc in my head).  I reviewed some of my notes on fiber optic spectroscopy from the Dunlap Institute Summer School in Astronomical Instrumentation and the remainder of my confusion was resolved!
+I tried reading arXiv:astro-ph/0501460 first and got lost towards the end.  Reading github.com/davidwhogg/Spectroscopy/documents/spectroscopy.tex helped substantially with putting it into the context of a consistent mathematical model (rather than the somewhat inconsistent one I was putting together ad hoc in my head).  I reviewed some of my notes on fiber optic spectroscopy from the Dunlap Institute Summer School in Astronomical Instrumentation and the remainder of my confusion was resolved!  I almost certainly still have some holes in my understanding, but at least the big ones are covered, I think.
 \subsection*{Week 2}
-
+Raw SDSS data is available in http://das.sdss.org/unprocessed/spectro/ and sky-subtracted SDSS data is available in http://das.sdss.org/spectro/.  I'm working on setting up PyFITS to read the damn things.
 
 \end{document}
 
